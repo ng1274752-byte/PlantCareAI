@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Assistant | PlantCare AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="brand">🌿 PlantCare AI</div>
+        <a href="/">← Back to Home</a>
+    </header>
+
+    <main class="assistant-page">
+
+        <section class="page-heading">
+
+            <span class="eyebrow">YOUR PLANT COMPANION</span>
+
+            <h1>Plant Care Assistant.</h1>
+
+            <p>Understand your plant and help it grow healthier.</p>
+
+        </section>
+
+        <section class="assistant-card">
+
+            <div class="feature-icon">🌿</div>
+
+            <h2>Hello, plant lover!</h2>
+
+            <p>
+                Tell me what is happening to your plant.
+                I will suggest possible problems and care tips.
+            </p>
+
+            <textarea
+                id="symptoms"
+                placeholder="Describe your plant symptoms here..."
+                rows="6"></textarea>
+
+            <button class="primary-btn"
+                    onclick="analyzeSymptoms()">
+                Get Care Suggestions →
+            </button>
+
+        </section>
+
+        <section id="result" class="result-card" hidden>
+
+            <h2>Plant Health Analysis</h2>
+
+            <h3 id="condition"></h3>
+
+            <p id="suggestion"></p>
+
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+        <a href="/" class="nav-item">
+            <span>⌂</span>
+            Home
+        </a>
+
+        <a href="/scan" class="nav-item">
+            <span>◎</span>
+            Scan
+        </a>
+
+        <a href="/assistant" class="nav-item active">
+            <span>♧</span>
+            Assistant
+        </a>
+
+    </nav>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

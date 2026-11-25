@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantCare AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="brand">🌿 PlantCare AI</div>
+        <span>Grow with intelligence</span>
+    </header>
+
+    <main class="home-page">
+
+        <section class="welcome-section">
+
+            <div class="plant-decoration">🌿</div>
+
+            <div class="welcome-content">
+
+                <span class="eyebrow">
+                    YOUR PERSONAL PLANT ASSISTANT
+                </span>
+
+                <h1>Healthy plants,<br>
+                    happy life.</h1>
+
+                <p>
+                    Understand your plants, identify possible
+                    diseases and discover better ways to care
+                    for them with artificial intelligence.
+                </p>
+
+                <a href="/scan" class="primary-btn">
+                    Scan your plant →
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="home-features">
+
+            <a href="/scan" class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h2>Plant Scanner</h2>
+                <p>Capture a leaf and identify possible diseases.</p>
+                <span>Start scanning →</span>
+            </a>
+
+            <a href="/assistant" class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h2>Plant Assistant</h2>
+                <p>Get helpful suggestions for your plant.</p>
+                <span>Start conversation →</span>
+            </a>
+
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+        <a href="/" class="nav-item active">
+            <span>⌂</span>
+            Home
+        </a>
+
+        <a href="/scan" class="nav-item">
+            <span>◎</span>
+            Scan
+        </a>
+
+        <a href="/assistant" class="nav-item">
+            <span>♧</span>
+            Assistant
+        </a>
+
+    </nav>
+
+</body>
+</html>
