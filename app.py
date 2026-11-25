@@ -45,6 +45,14 @@ disease_info = {
 }
 
 
+from disease_data import build_disease_info
+
+disease_info = {
+    **build_disease_info(class_names),
+    **disease_info
+}
+
+
 # Text-based symptom analysis
 def analyze_symptoms(symptoms):
     symptoms = symptoms.lower()
@@ -163,7 +171,7 @@ def predict():
     if "image" not in request.files:
         return jsonify({
             "condition": "No image uploaded",
-            "suggestion": "Please upload a tomato leaf image."
+            "suggestion": "Please upload a leaf image."
         }), 400
 
     file = request.files["image"]
@@ -189,7 +197,7 @@ def predict():
         if confidence < 60:
             return jsonify({
                 "condition": "Uncertain prediction",
-                "suggestion": "Upload a clearer tomato leaf image.",
+                "suggestion": "Upload a clearer leaf image.",
                 "confidence": round(confidence, 2)
             })
 
