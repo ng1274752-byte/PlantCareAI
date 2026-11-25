@@ -49,6 +49,46 @@ disease_info = {
 def analyze_symptoms(symptoms):
     symptoms = symptoms.lower()
 
+    regional_words = {
+        "yellow": [
+            "ಹಳದಿ", "पीला", "पीली", "पीलापन",
+            "పసుపు", "மஞ்சள்"
+        ],
+        "brown": [
+            "ಕಂದು", "भूरा", "भूरी",
+            "గోధుమ", "பழுப்பு"
+        ],
+        "spots": [
+            "ಚುಕ್ಕೆ", "ಕಲೆ", "धब्बे", "धब्बा",
+            "మచ్చ", "புள்ளி"
+        ],
+        "white": [
+            "ಬಿಳಿ", "सफेद", "తెలుపు", "வெள்ளை"
+        ],
+        "powder": [
+            "ಪುಡಿ", "पाउडर", "పొడి", "தூள்"
+        ],
+        "dry": [
+            "ಒಣ", "सूखा", "सूखी", "सूख",
+            "ఎండ", "உலர்", "காய்ந்த"
+        ],
+        "wilting": [
+            "ಬಾಡು", "ಬಾಡಿದ", "मुरझा",
+            "వాడి", "வாடி"
+        ],
+        "healthy": [
+            "ಆರೋಗ್ಯಕರ", "स्वस्थ",
+            "ఆరోగ్యకర", "ஆரோக்கிய"
+        ]
+    }
+
+    original_symptoms = symptoms
+
+    for english, words in regional_words.items():
+        if any(word in original_symptoms for word in words):
+            symptoms += " " + english
+
+
     if "yellow" in symptoms:
         return {
             "condition": "Possible watering or nutrient problem",

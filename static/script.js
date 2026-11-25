@@ -23,12 +23,12 @@ function handleImage(file) {
     if (!file) return;
 
     if (file.type && !file.type.startsWith("image/")) {
-        alert("Please select a valid image.");
+        alert(translateText("Please select a valid image."));
         return;
     }
 
     if (file.size > 9 * 1024 * 1024) {
-        alert("Please select an image smaller than 9 MB.");
+        alert(translateText("Please select an image smaller than 9 MB."));
         return;
     }
 
@@ -69,7 +69,7 @@ if (cameraInput) {
 async function analyzeImage() {
 
     if (!selectedImage) {
-        alert("Please take a photo or upload a leaf image.");
+        alert(translateText("Please take a photo or upload a leaf image."));
         return;
     }
 
@@ -78,7 +78,7 @@ async function analyzeImage() {
     );
 
     button.disabled = true;
-    button.textContent = "Analyzing your plant...";
+    button.textContent = translateText("Analyzing your plant...");
 
     showResult(
         "Analyzing your leaf...",
@@ -112,7 +112,7 @@ async function analyzeImage() {
         );
     } finally {
         button.disabled = false;
-        button.textContent = "Analyze Leaf";
+        button.textContent = translateText("Analyze Leaf");
     }
 }
 
@@ -124,7 +124,7 @@ async function analyzeSymptoms() {
         .value.trim();
 
     if (!symptoms) {
-        alert("Please describe your plant symptoms.");
+        alert(translateText("Please describe your plant symptoms."));
         return;
     }
 
@@ -133,7 +133,7 @@ async function analyzeSymptoms() {
     );
 
     button.disabled = true;
-    button.textContent = "Checking symptoms...";
+    button.textContent = translateText("Checking symptoms...");
 
     showResult(
         "Understanding your plant...",
@@ -160,6 +160,6 @@ async function analyzeSymptoms() {
         );
     } finally {
         button.disabled = false;
-        button.textContent = "Get Care Suggestions →";
+        button.textContent = translateText("Get Care Suggestions →");
     }
 }
