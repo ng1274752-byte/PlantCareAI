@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, jsonify
-import tensorflow as tf
+from ai_edge_litert.interpreter import Interpreter
+from threading import Lock
 import numpy as np
 from PIL import Image, ImageOps
 import json
@@ -12,10 +13,15 @@ app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
 BASE_DIR = Path(__file__).resolve().parent
 
 # Load trained AI model
-model = tf.keras.models.load_model(
-    BASE_DIR / "model/plant_model.keras",
-    compile=False
+interpreter = Interpreter(
+    model_path=str(BASE_DIR / "model/plant_model.tflite"),
+    num_threads=1
 )
+
+interpreter.allocate_tensors()
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+prediction_lock = Lock()
 
 # Load classification categories
 with open(BASE_DIR / "model/class_names.json") as file:
@@ -187,7 +193,15 @@ def predict():
         image_array = np.expand_dims(image_array, axis=0)
 
         # AI prediction
-        predictions = model.predict(image_array, verbose=0)[0]
+        with prediction_lock:
+            interpreter.set_tensor(
+                input_details[0]["index"],
+                image_array
+            )
+            interpreter.invoke()
+            predictions = interpreter.get_tensor(
+                output_details[0]["index"]
+            )[0]
 
         index = int(np.argmax(predictions))
         confidence = float(predictions[index]) * 100
